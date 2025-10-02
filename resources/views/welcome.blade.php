@@ -24,6 +24,7 @@
 <body>
 
     <x-landing.navbar />
+    
     {{-- hero --}}
     <section
         class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white overflow-hidden curved-bottom">

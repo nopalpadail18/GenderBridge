@@ -26,7 +26,7 @@
                         class="text-gray-700 hover:text-gender-purple px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 border-b-2 border-transparent hover:border-gender-purple">
                         Beranda
                     </a>
-                    <a href="#forum-lapor"
+                    <a href="{{ route('report.create') }}"
                         class="text-gray-700 hover:text-gender-pink px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 border-b-2 border-transparent hover:border-gender-pink">
                         Forum Lapor
                     </a>

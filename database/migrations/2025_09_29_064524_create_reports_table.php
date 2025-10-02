@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->text('content');
-            $table->string('category');
+            $table->text('title');
+            $table->text('description');
+            $table->string('location');
+            $table->string('category')->nullable();
+            $table->string('evidence')->nullable();
+            $table->string('photo')->nullable();
             $table->enum('status', ['baru', 'diproses', 'selesai'])->default('baru');
             $table->timestamps();
         });
