@@ -23,7 +23,7 @@
 
 <!-- Other Main News -->
 <div class="mb-8">
-    <h3 class="text-xl font-bold text-gray-800 mb-4 border-b-2 border-biru pb-2">Berita Utama
+    <h3 class="text-xl font-bold text-gray-800 mb-4 border-b-2 border-hijau pb-2">Berita Utama
         Lainnya</h3>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- News Card 1 -->
@@ -42,7 +42,7 @@
                 </div>
                 <h4 class="font-semibold text-gray-900 mb-2 text-pretty">Sosialisasi Peraturan
                     Pemerintah Nomor 7 Tahun 2025: Perkuat Tata Kelola Kesetaraan Gender</h4>
-                <a href="#" class="text-pink hover:underline text-sm">Read More</a>
+                <a href="#" class="text-hijau hover:underline text-sm">Read More</a>
             </div>
         </article>
         <!-- News Card 2 -->
@@ -61,7 +61,7 @@
                 </div>
                 <h4 class="font-semibold text-gray-900 mb-2 text-pretty">Data Gender Nasional Gelar
                     Sosialisasi Pedoman Berbagi Pakai DTKS: Menuju Data Inklusif</h4>
-                <a href="#" class="text-pink hover:underline text-sm">Read More</a>
+                <a href="#" class="text-hijau hover:underline text-sm">Read More</a>
             </div>
         </article>
         <!-- News Card 3 -->
@@ -80,7 +80,7 @@
                 </div>
                 <h4 class="font-semibold text-gray-900 mb-2 text-pretty">Forum Kesetaraan Gender
                     Indonesia Siap Gelar Rencana Induk Data Prioritas 2025-2029</h4>
-                <a href="#" class="text-pink hover:underline text-sm">Read More</a>
+                <a href="#" class="text-hijau hover:underline text-sm">Read More</a>
             </div>
         </article>
     </div>

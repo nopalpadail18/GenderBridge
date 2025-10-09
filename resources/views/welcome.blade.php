@@ -24,10 +24,10 @@
 <body>
 
     <x-landing.navbar />
-    
+
     {{-- hero --}}
     <section
-        class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white overflow-hidden curved-bottom">
+        class="relative bg-hijau text-white overflow-hidden curved-bottom">
         <div class="relative z-10 container mx-auto px-6 py-20 text-center">
             <p class="text-lg mb-4 opacity-90">Selamat Datang di Gender Bridge</p>
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
@@ -62,7 +62,7 @@
     {{-- article --}}
     <div class="container mx-auto p-4 md:p-8">
         <header class="flex items-center py-4 mb-8">
-            <svg class="w-8 h-8 text-biru mr-2" fill="currentColor" viewBox="0 0 20 20"
+            <svg class="w-8 h-8 text-hijau mr-2" fill="currentColor" viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"

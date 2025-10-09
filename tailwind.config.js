@@ -20,6 +20,7 @@ export default {
                 "gender-blue": "#3B82F6",
                 "biru": "#63C8FF",
                 "pink": "#FF2DD1",
+                "hijau": "#0c9488"
             },
         },
     },

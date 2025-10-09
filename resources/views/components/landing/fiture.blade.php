@@ -3,7 +3,7 @@
         class="mx-auto h-24 w-32 object-contain" />
     <div class="mt-6 flex items-center justify-center gap-3">
         <span aria-hidden="true"
-            class="inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-sky-200 bg-sky-50 text-sky-600 font-semibold">1</span>
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-teal-600 bg-hijau text-white font-semibold">1</span>
         <h3 class="text-lg md:text-xl font-semibold text-slate-900">Akses Setara ke Layanan</h3>
     </div>
     <p class="mt-3 text-slate-600 leading-relaxed">
@@ -17,7 +17,7 @@
         class="mx-auto h-24 w-32 object-contain" />
     <div class="mt-6 flex items-center justify-center gap-3">
         <span aria-hidden="true"
-            class="inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-sky-200 bg-sky-50 text-sky-600 font-semibold">2</span>
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-teal-600 bg-hijau text-white font-semibold">2</span>
         <h3 class="text-lg md:text-xl font-semibold text-slate-900">Data & Pelaporan Terpilah</h3>
     </div>
     <p class="mt-3 text-slate-600 leading-relaxed">
@@ -32,7 +32,7 @@
         class="mx-auto h-24 w-32 object-contain" />
     <div class="mt-6 flex items-center justify-center gap-3">
         <span aria-hidden="true"
-            class="inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-sky-200 bg-sky-50 text-sky-600 font-semibold">3</span>
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-teal-600 bg-hijau text-white font-semibold">3</span>
         <h3 class="text-lg md:text-xl font-semibold text-slate-900">Perlindungan & Pelaporan</h3>
     </div>
     <p class="mt-3 text-slate-600 leading-relaxed">
@@ -46,7 +46,7 @@
         class="mx-auto h-24 w-32 object-contain" />
     <div class="mt-6 flex items-center justify-center gap-3">
         <span aria-hidden="true"
-            class="inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-sky-200 bg-sky-50 text-sky-600 font-semibold">4</span>
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-teal-600 bg-hijau text-white font-semibold">4</span>
         <h3 class="text-lg md:text-xl font-semibold text-slate-900">Publikasi & Edukasi Inklusif</h3>
     </div>
     <p class="mt-3 text-slate-600 leading-relaxed">
@@ -60,7 +60,7 @@
         class="mx-auto h-24 w-32 object-contain" />
     <div class="mt-6 flex items-center justify-center gap-3">
         <span aria-hidden="true"
-            class="inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-sky-200 bg-sky-50 text-sky-600 font-semibold">5</span>
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-teal-600 bg-hijau text-white font-semibold">5</span>
         <h3 class="text-lg md:text-xl font-semibold text-slate-900">Konsultasi & Komunitas</h3>
     </div>
     <p class="mt-3 text-slate-600 leading-relaxed">
@@ -74,7 +74,7 @@
         class="mx-auto h-24 w-32 object-contain" />
     <div class="mt-6 flex items-center justify-center gap-3">
         <span aria-hidden="true"
-            class="inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-sky-200 bg-sky-50 text-sky-600 font-semibold">6</span>
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-teal-600 bg-hijau text-white font-semibold">6</span>
         <h3 class="text-lg md:text-xl font-semibold text-slate-900">Integrasi Layanan</h3>
     </div>
     <p class="mt-3 text-slate-600 leading-relaxed">
