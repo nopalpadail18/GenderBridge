@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Project;
 use App\Http\Controllers\Controller;
 use App\Models\Project\Report;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ReportController extends Controller
 {
@@ -16,28 +17,37 @@ class ReportController extends Controller
     public function store(Request $r)
     {
         $r->validate([
-            'title' => 'required|string|max:255',
+            'incident_type' => 'required|string|max:255',
+            'urgency_level' => ['required', Rule::in(['low', 'medium', 'high'])],
+            'location_type' => 'required|string|max:255',
+            'incident_date' => 'required|date',
+            'location_detail' => 'required|string',
             'description' => 'required|string',
-            'location' => 'required|string|max:255',
-            'category' => 'nullable|string|max:255',
-            'evidence' => 'nullable|file|mimes:jpg,png,pdf|max:2048',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'evidence_files' => 'nullable|array',
+            'evidence_files.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,mp4|max:2048',
         ]);
 
-        $evidencePath = null;
-        if ($r->hasFile('evidence')) {
-            $evidencePath = $r->file('evidence')->store('evidences', 'public');
+        // dd($r->all());
+
+        $evidencePath = [];
+        if ($r->hasFile('evidence_files')) {
+            foreach ($r->file('evidence_files') as $file) {
+                $path = $file->store('evidences', 'public');
+                $evidencePath[] = $path;
+            }
         }
 
+
         Report::create([
-            'title' => $r->input('title'),
+            'incident_type' => $r->input('incident_type'),
+            'urgency_level' => $r->input('urgency_level'),
+            'location_type' => $r->input('location_type'),
+            'incident_date' => $r->input('incident_date'),
+            'location_detail' => $r->input('location_detail'),
             'description' => $r->input('description'),
-            'location' => $r->input('location'),
-            'category' => $r->input('category'),
-            'evidence' => $evidencePath,
-            'photo' => $r->hasFile('photo') ? $r->file('photo')->store('photos', 'public') : null,
-            'status' => 'baru',
+            'evidence_links' => !empty($evidencePaths) ? json_encode($evidencePaths) : null,
         ]);
+
 
         return redirect()->route('report.create')->with('success', 'Laporan berhasil dikirim.');
     }

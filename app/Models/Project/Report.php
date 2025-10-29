@@ -6,15 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
 {
-    protected $table = 'reports';
+    protected $table = 'tbl_reports';
     protected $fillable = [
-        'title',
+        'incident_date',
+        'incident_type',
+        'location_type',
+        'location_detail',
         'description',
-        'location',
-        'category',
-        'evidence',
-        'photo',
-        'status',
+        'urgency_level',
+        'evidence_links',
     ];
-
 }

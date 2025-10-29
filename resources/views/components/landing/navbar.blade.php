@@ -22,7 +22,7 @@
             <!-- Desktop Navigation -->
             <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-8">
-                    <a href="#beranda"
+                    <a href="/"
                         class="text-gray-700 hover:text-gender-purple px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 border-b-2 border-transparent hover:border-gender-purple">
                         Beranda
                     </a>
@@ -30,15 +30,15 @@
                         class="text-gray-700 hover:text-gender-pink px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 border-b-2 border-transparent hover:border-gender-pink">
                         Forum Lapor
                     </a>
-                    <a href="#komunitas"
+                    <a href="{{ route('discussion.index') }}"
                         class="text-gray-700 hover:text-gender-blue px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 border-b-2 border-transparent hover:border-gender-blue">
-                        Komunitas
+                        Ruang Diskusi
                     </a>
                     <a href="#"
                         class="text-gray-700 hover:text-gender-pink px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 border-b-2 border-transparent hover:border-gender-pink">
                         Edukasi
                     </a>
-                    <a href="#"
+                    <a href="{{ route('article.index') }}"
                         class="text-gray-700 hover:text-gender-blue px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 border-b-2 border-transparent hover:border-gender-blue">
                         Artikel</a>
                     <x-landing.auth-navigasi />
