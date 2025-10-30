@@ -28,6 +28,24 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $user = $request->user();
+
+        // dd(
+        //     $user->getRoleNames(), // Apa peran user ini?
+        //     route('admin.dashboard') // Apakah rute ini bisa dibuat?
+        // );
+
+        if ($user->hasRole('admin')) {
+            // Hapus intended(), gunakan redirect() biasa.
+            // Ini akan memaksa admin untuk selalu ke admin dashboard.
+            return redirect(route('admin.dashboard'));
+        }
+
+        if ($user->hasRole('user')) {
+            // Biarkan intended() untuk user biasa, ini berguna untuk mereka.
+            return redirect()->intended(route('dashboard'));
+        }
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 
 class ReportController extends Controller
 {
+    // User Biasa
     public function create()
     {
         return view('projects.pelaporan.user.create');
@@ -55,8 +56,10 @@ class ReportController extends Controller
     public function index()
     {
         $reports = Report::latest()->paginate(10);
-        return view('project.report.index', compact('reports'));
+        return view('projects.admin.pelaporan.report', compact('reports'));
     }
+
+    // Admin
 
     public function updateStatus(Request $r, $id)
     {

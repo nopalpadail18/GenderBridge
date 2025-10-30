@@ -20,18 +20,8 @@ return new class extends Migration
             $table->longText('description');
             $table->enum('urgency_level', ['low', 'medium', 'high'])->default('medium');
             $table->text('evidence_links')->nullable();
-
-            // -- Kolom untuk Manajemen Admin --
-
-            // Status laporan untuk tracking oleh admin.
             $table->enum('status', ['new', 'in_review', 'resolved', 'archived'])->default('new');
-
-            // Catatan internal yang hanya bisa diisi oleh admin.
             $table->text('admin_notes')->nullable();
-
-            // -- Timestamps --
-            // created_at akan otomatis mencatat kapan laporan dibuat.
-            // updated_at akan mencatat kapan status atau catatan admin diubah.
             $table->timestamps();
         });
     }
