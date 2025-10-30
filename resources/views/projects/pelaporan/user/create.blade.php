@@ -42,6 +42,45 @@
                         </div>
                     </div>
 
+                    @if (session('trackingId'))
+                        <div class="py-6">
+                            <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+                                <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-lg shadow-md"
+                                    role="alert">
+                                    <p class="font-bold text-lg">Laporan Anda Telah Diterima!</p>
+                                    <p class="mt-2">Mohon simpan kode pelacakan di bawah ini untuk melihat status
+                                        laporan Anda nanti.</p>
+                                    <div class="mt-4 bg-white p-3 rounded text-center">
+                                        <p class="text-2xl font-bold tracking-widest text-gray-800" id="trackingCode">
+                                            {{ session('trackingId') }}
+                                        </p>
+                                    </div>
+                                    <div class="mt-3 flex items-center justify-center sm:justify-start gap-3">
+                                        <button onclick="copyToClipboard()"
+                                            class="text-sm font-semibold text-blue-600 hover:underline">Salin
+                                            Kode</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            function copyToClipboard() {
+                                const code = document.getElementById('trackingCode').innerText;
+                                navigator.clipboard.writeText(code).then(() => {
+                                    Swal.fire({
+                                        toast: true,
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'Kode berhasil disalin!',
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    });
+                                });
+                            }
+                        </script>
+                    @endif
+
                     <form action="{{ route('report.store') }}" method="POST" enctype="multipart/form-data"
                         class="space-y-6">
                         @csrf
@@ -139,15 +178,49 @@
                         </div>
 
                         <div class="flex items-center justify-between gap-4 pt-2">
-                            <a href="{{ url()->previous() }}"
-                                class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium text-slate-700 bg-slate-50 border border-slate-200 hover:bg-slate-100">
-                                <i class="fa-solid fa-arrow-left"></i> Batal
-                            </a>
+                            <div class="flex items-center gap-3">
+                                <a href="{{ url()->previous() }}"
+                                    class="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium text-slate-700 bg-slate-50 border border-slate-200 hover:bg-slate-100">
+                                    <i class="fa-solid fa-arrow-left"></i> Batal
+                                </a>
+
+                                {{-- Tombol untuk menuju view pelacakan laporan.
+                                            Sesuaikan nama route/URL jika berbeda di aplikasi Anda --}}
+                                <a href="{{ route('report.track.form') }}"
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                                    <i class="fa-solid fa-search"></i> Lihat Pelacakan
+                                </a>
+                            </div>
+
                             <button type="submit"
                                 class="inline-flex items-center gap-2 px-6 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold shadow">
                                 <i class="fa-solid fa-paper-plane"></i> Kirim Laporan
                             </button>
                         </div>
+
+                        <script>
+                            function openTrackDialog() {
+                                Swal.fire({
+                                    title: 'Lacak Laporan',
+                                    input: 'text',
+                                    inputLabel: 'Masukkan kode pelacakan',
+                                    inputPlaceholder: 'Contoh: ABC123',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Lacak',
+                                    cancelButtonText: 'Batal',
+                                    inputValidator: (value) => {
+                                        if (!value) {
+                                            return 'Kode pelacakan wajib diisi';
+                                        }
+                                    }
+                                }).then((result) => {
+                                    if (result.isConfirmed && result.value) {
+                                        const code = encodeURIComponent(result.value.trim());
+                                        window.location.href = '{{ route('report.track.form') }}?code=' + code;
+                                    }
+                                });
+                            }
+                        </script>
                     </form>
                 </div>
             </div>
@@ -155,6 +228,22 @@
     </section>
 
     <x-landing.footer />
+
+    <script>
+        function copyToClipboard() {
+            const code = document.getElementById('trackingCode').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Kode berhasil disalin!',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            });
+        }
+    </script>
 </body>
 
 </html>

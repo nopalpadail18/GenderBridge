@@ -5,6 +5,28 @@
         </h2>
     </x-slot>
 
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                title: 'Berhasil!',
+                text: @json(session('success')),
+                icon: 'success',
+                confirmButtonColor: '#4f46e5',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @else
+        <script>
+            Swal.fire({
+                title: 'Gagal!',
+                text: @json(session('success')),
+                icon: 'error',
+                confirmButtonColor: '#4f46e5',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -43,26 +65,30 @@
                                             </span>
                                         </td>
                                         <td class="py-2 px-4 border-b">
-                                            {{-- <form action="{{ route('admin.reports.updateStatus', $report->id) }}" --}}
-                                            <form action="#" method="POST" class="flex items-center gap-2">
-                                                @csrf
-                                                <select name="status"
-                                                    class="block w-full rounded-md border-gray-300 shadow-sm text-sm focus:ring-indigo-500 focus:border-indigo-500">
-                                                    <option value="new" @selected($report->status == 'new')>Baru</option>
-                                                    <option value="in_review" @selected($report->status == 'in_review')>Diproses
-                                                    </option>
-                                                    <option value="resolved" @selected($report->status == 'resolved')>Selesai
-                                                    </option>
-                                                    <option value="archived" @selected($report->status == 'archived')>Diarsipkan
-                                                    </option>
-                                                </select>
-                                                <button type="submit"
-                                                    class="px-3 py-1.5 bg-indigo-600 text-white rounded-md text-sm font-semibold hover:bg-indigo-700">Update</button>
+                                            @if ($report->status == 'resolved' || $report->status == 'archived')
+                                                {{-- JIKA SUDAH FINAL: Tampilkan teks dan non-aktifkan form --}}
+                                                <span class="text-xs text-gray-500 italic">Status Final</span>
+                                            @else
+                                                <form action="{{ route('admin.reports.updateStatus', $report->id) }}"
+                                                    method="POST" class="flex items-center gap-2">
+                                                    @csrf
+                                                    <select name="status" onchange="this.form.submit()"
+                                                        class="block w-full rounded-md border-gray-300 shadow-sm text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                                        <option value="new" @selected($report->status == 'new')>Baru
+                                                        </option>
+                                                        <option value="in_review" @selected($report->status == 'in_review')>Diproses
+                                                        </option>
+                                                        <option value="resolved" @selected($report->status == 'resolved')>Selesai
+                                                        </option>
+                                                        <option value="archived" @selected($report->status == 'archived')>Diarsipkan
+                                                        </option>
+                                                    </select>
 
-                                                <a href="#"
-                                                    class="inline-block px-3 py-1.5 bg-gray-200 text-gray-800 rounded-md text-sm font-semibold hover:bg-gray-300"
-                                                    title="Lihat detail">Detail</a>
-                                            </form>
+                                                    <a href="{{ route('admin.reports.show', $report) }}"
+                                                        class="inline-block px-3 py-1.5 bg-gray-200 text-gray-800 rounded-md text-sm font-semibold hover:bg-gray-300"
+                                                        title="Lihat detail">Detail</a>
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

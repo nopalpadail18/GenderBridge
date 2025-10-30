@@ -15,5 +15,8 @@ class Report extends Model
         'description',
         'urgency_level',
         'evidence_links',
+        'status',
+        'admin_notes',
+        'tracking_id'
     ];
 }

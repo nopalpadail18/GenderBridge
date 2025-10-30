@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project\Report;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class ReportController extends Controller
 {
@@ -17,6 +18,7 @@ class ReportController extends Controller
 
     public function store(Request $r)
     {
+
         $r->validate([
             'incident_type' => 'required|string|max:255',
             'urgency_level' => ['required', Rule::in(['low', 'medium', 'high'])],
@@ -28,7 +30,9 @@ class ReportController extends Controller
             'evidence_files.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf,mp4|max:2048',
         ]);
 
-        // dd($r->all());
+        do {
+            $trackingId = Str::upper(Str::random(8));
+        } while (Report::where('tracking_id', $trackingId)->exists());
 
         $evidencePath = [];
         if ($r->hasFile('evidence_files')) {
@@ -40,6 +44,7 @@ class ReportController extends Controller
 
 
         Report::create([
+            'tracking_id' => $trackingId,
             'incident_type' => $r->input('incident_type'),
             'urgency_level' => $r->input('urgency_level'),
             'location_type' => $r->input('location_type'),
@@ -50,7 +55,7 @@ class ReportController extends Controller
         ]);
 
 
-        return redirect()->route('report.create')->with('success', 'Laporan berhasil dikirim.');
+        return redirect()->route('report.create')->with('success', 'Laporan berhasil dikirim.')->with('trackingId', $trackingId);;
     }
 
     public function index()
@@ -60,16 +65,43 @@ class ReportController extends Controller
     }
 
     // Admin
-
-    public function updateStatus(Request $r, $id)
+    /**
+     * Menampilkan halaman detail untuk satu laporan spesifik.
+     * Menggunakan Route Model Binding (Report $report)
+     *
+     * @param  \App\Models\Report  $report
+     * @return \Illuminate\View\View
+     */
+    public function show(Report $report)
     {
-        $r->validate([
-            'status' => 'required|in:baru,diproses,selesai',
+        return view('projects.admin.pelaporan.detail-pelaporan', compact('report'));
+    }
+
+    public function addNote(Request $request, Report $report)
+    {
+        $request->validate([
+            'admin_notes' => 'required|string',
         ]);
 
-        $report = Report::findOrFail($id);
-        $report->status = $r->input('status');
-        $report->save();
+        $report->update([
+            'admin_notes' => $request->admin_notes,
+        ]);
+
+        return redirect()->back()->with('success', 'Catatan berhasil disimpan.');
+    }
+
+    public function updateStatus(Request $request, Report $report)
+    {
+        if ($report->status === 'resolved' || $report->status === 'archived') {
+            return redirect()->back()->with('error', 'Gagal! Status laporan yang sudah Selesai atau Diarsipkan tidak dapat diubah lagi.');
+        }
+        $request->validate([
+            'status' => ['required', Rule::in(['new', 'in_review', 'resolved', 'archived'])],
+        ]);
+
+        $report->update([
+            'status' => $request->input('status'),
+        ]);
 
         return redirect()->back()->with('success', 'Status laporan berhasil diperbarui.');
     }

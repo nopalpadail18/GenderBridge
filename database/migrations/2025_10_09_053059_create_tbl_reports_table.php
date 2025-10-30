@@ -22,9 +22,11 @@ return new class extends Migration
             $table->text('evidence_links')->nullable();
             $table->enum('status', ['new', 'in_review', 'resolved', 'archived'])->default('new');
             $table->text('admin_notes')->nullable();
+            $table->string('tracking_id')->unique()->nullable();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

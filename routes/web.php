@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Project\DisscusionController;
 use App\Http\Controllers\Project\ReportController;
+use App\Http\Controllers\TrackingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,7 +25,23 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         return view('projects.admin.dashboard');
     })->name('dashboard');
 
-    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::controller(ReportController::class)->prefix('reports')->name('reports.')->group(function () {
+
+        // Sekarang Anda bisa menggunakan sintaks string yang singkat dan bersih
+
+        // URL: /admin/reports | Nama: admin.reports.index
+        Route::get('/report', 'index')->name('index');
+
+        // URL: /admin/reports/{report} | Nama: admin.reports.show
+        // (Ini rute show yang sebelumnya error, sekarang sudah benar)
+        Route::get('/{report}', 'show')->name('show');
+
+        // URL: /admin/reports/{report}/update-status | Nama: admin.reports.updateStatus
+        Route::post('/{report}/update-status', 'updateStatus')->name('updateStatus');
+
+        // URL: /admin/reports/{report}/notes | Nama: admin.reports.addNote
+        Route::post('/{report}/notes', 'addNote')->name('addNote');
+    });
 });
 
 Route::middleware('auth')->group(function () {
@@ -45,5 +62,10 @@ Route::get('/ruang-diskusi/{categorySlug}/{postSlug}', [App\Http\Controllers\Pro
 
 // Artikel Routes
 Route::get('/artikel', [App\Http\Controllers\Project\ArticleController::class, 'index'])->name('article.index');
+
+// Tracking Routes
+Route::get('/lacak-laporan', [TrackingController::class, 'index'])->name('report.track.form');
+Route::post('/lacak-laporan', [TrackingController::class, 'show'])->name('report.track.show');
+
 
 require __DIR__ . '/auth.php';
